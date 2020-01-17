@@ -1,0 +1,10 @@
+<p>customer-list works!</p>
+
+	<button type="button" (click)="getCustomers()">Click here</button>
+	{{sample}}
+<ul>
+	<li *ngFor="let cust of customerList">
+		{{cust.id}} {{cust.name}} {{cust.service}}
+	</li>
+
+</ul>
