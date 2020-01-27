@@ -1,4 +1,4 @@
-package com.customer.api;
+package com.application.customer.api;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.customer.command.AddCustomerCommand;
-import com.customer.model.*;
-import com.customer.service.CustomerService;
+import com.application.customer.command.AddCustomerCommand;
+import com.application.customer.model.*;
+import com.application.customer.service.CustomerService;
 @CrossOrigin(value="http://localhost:4200")
 @RestController
 public class CustomerApi {
