@@ -10,9 +10,14 @@ import org.springframework.stereotype.Service;
 
 import com.application.customer.command.AddCustomerCommand;
 import com.application.customer.model.CustomerModel;
+import com.base.Event;
+import com.base.EventEnvelope;
 import com.domain.Customer;
+import com.domain.event.CustomerCreatedEvent;
 import com.domain.factory.CustomerFactory;
 import com.infrastructure.repository.CustomerRepository;
+import com.message.MessageConsumer;
+import com.message.MessageProducer;
 import com.readmodel.customer.dao.CustomerDao;
 import com.readmodel.customer.dto.CustomerDto;
 
@@ -24,6 +29,12 @@ public class CustomerService {
 	CustomerFactory  customerFactory;
 	CustomerRepository  	customerRepository;
 	CustomerDao customerDao;
+	
+	@Autowired
+	MessageProducer messageProducer;
+	
+	@Autowired
+	MessageConsumer messageConsumer;  
 	
 	@Autowired
 	public CustomerService(CustomerFactory  customerFactory, 
@@ -61,6 +72,13 @@ public class CustomerService {
 		CustomerModel customerModel = null;
 		Customer c = customerFactory.createCustomer(addCustomerCommand.getCustomerModel());
 		customerRepository.save(c);
+		
+		CustomerCreatedEvent event = new CustomerCreatedEvent();
+		
+		event.setCustomer(c);
+		
+		messageProducer.Send(event);
+		
 		
 		CustomerDto dto = new CustomerDto();
 		BeanUtils.copyProperties(c, dto);

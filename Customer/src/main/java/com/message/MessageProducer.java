@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.base.Event;
 import com.base.EventEnvelope;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,12 +25,12 @@ public class MessageProducer {
 		@Value("${jsa.kafka.topic}")
 		String kafkaTopic;
 		
-		public void Send(Object event) {
+		public void Send(Event event) {
 			
-			EventEnvelope eventEnvelope = (EventEnvelope) event;
+			//EventEnvelope eventEnvelope = (EventEnvelope) event;
 			
 			try {
-				kafkaTemplate.send(kafkaTopic,eventEnvelope.getId(), new ObjectMapper().writeValueAsString(event));
+				kafkaTemplate.send(kafkaTopic, new Integer(event.getId()).toString(), new ObjectMapper().writeValueAsString(event));
 			} catch (JsonProcessingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
