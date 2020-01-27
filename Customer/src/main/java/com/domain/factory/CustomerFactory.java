@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.customer.model.CustomerModel;
+import com.application.customer.model.CustomerModel;
 import com.domain.Customer;
 
 @Component

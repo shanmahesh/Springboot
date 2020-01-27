@@ -1,6 +1,6 @@
-package com.customer.command;
+package com.application.customer.command;
 
-import com.customer.model.CustomerModel;
+import com.application.customer.model.CustomerModel;
 
 public class AddCustomerCommand {
 

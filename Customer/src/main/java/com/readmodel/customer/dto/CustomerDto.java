@@ -1,12 +1,14 @@
-package com.customer.model;
+package com.readmodel.customer.dto;
 
 import java.math.BigDecimal;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Id;
 
-@Component
-public class CustomerModel {
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "customers")
+public class CustomerDto {
+	@Id
 	private Long id;
 	private String name;
 	private BigDecimal service;
@@ -28,7 +30,6 @@ public class CustomerModel {
 	public void setService(BigDecimal service) {
 		this.service = service;
 	}
-	
 	
 	
 }
